@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('payout_distributions', function (Blueprint $table) {
+            $table->id();
+            $table->integer("user_id");
+            $table->string("user_email");
+            $table->string("user_unique_id");
+            $table->float("previous_wallet");
+            $table->float("current_wallet");
+            $table->string("reason");
+            $table->integer("invst_id");
+            $table->float("invest_amount");
+            $table->dateTime("date");
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('payout_distributions');
+    }
+};
