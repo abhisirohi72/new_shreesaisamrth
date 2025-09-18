@@ -6,21 +6,7 @@
     <div class="login-container">
         <h1>Welcome Back!</h1>
         <p>Login to your account to continue</p>
-        @if (session('success'))
-            {{-- <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div> --}}
-            <p style="color: #15be15;">{{ session('success') }}</p>
-        @endif
-
-        @if (session('error'))
-            {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div> --}}
-            <p style="color:#eb0f0f;">{{ session('error') }}</p>
-        @endif
+        @include("layouts.erro_msg")
 
         <form action="{{ route('user.login') }}" method="post">
             @csrf

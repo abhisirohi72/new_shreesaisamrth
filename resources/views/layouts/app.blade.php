@@ -31,7 +31,9 @@
         @include("layouts.developer.sidebar")    
     @endif
     @yield('content') <!-- Main Content -->
-    @include('layouts.footer')
+    @if(($page_name!="login") || ($page_name!="forgot_user") || ($page_name!="register_user"))
+        @include('layouts.footer')
+    @endif
     @stack('script-push')
 </body>
 
