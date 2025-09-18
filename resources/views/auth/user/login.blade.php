@@ -6,7 +6,7 @@
     <div class="login-container">
         <h1>Welcome Back!</h1>
         <p>Login to your account to continue</p>
-        @include("layouts.erro_msg")
+        @include("layouts.error_msg")
 
         <form action="{{ route('user.login') }}" method="post">
             @csrf
