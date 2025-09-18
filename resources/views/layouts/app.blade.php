@@ -9,13 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     @if((isset($page_name)) && $page_name=="login")
-        <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/assets/css/login.css') }}">
     @elseif((isset($page_name)) && $page_name=="forgot_user")
-        <link rel="stylesheet" href="{{ asset('assets/css/forgot_pass.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/assets/css/forgot_pass.css') }}">
     @elseif((isset($page_name)) && $page_name=="register_user")
-        <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/assets/css/register.css') }}">
     @else
-        <link rel="stylesheet" href="{{ asset('assets/css/u_dashboard.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/assets/css/u_dashboard.css') }}">
     @endif
 </head>
 
