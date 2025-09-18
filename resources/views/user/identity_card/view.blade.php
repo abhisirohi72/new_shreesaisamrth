@@ -3,156 +3,114 @@
 @section('title', $title)
 
 @section('content')
-    <style>
-        .datatable-container {
-            overflow: auto;
-        }
-    </style>
-    <main id="main" class="main">
-
-        <div class="pagetitle">
-            <h1>{{ $title }}</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item">Official</li>
-                    <li class="breadcrumb-item active">{{ $title }}</li>
-                </ol>
-            </nav>
+    <div class="overlay" id="overlay"></div>
+    <div class="wrap">
+        <div class="banner">
+            <div class="promo-tag">NEW</div>
+            <div class="txt">
+                <h1>{{ $title }}</h1>
+                <p>Official details and user information</p>
+            </div>
+            <img src="{{ $faviconDetails ? asset('storage/webiste_setting/' . $faviconDetails->backend_logo) : asset('assets/img/logo.png') }}" 
+                 alt="App Logo" style="border-radius:12px; width:100px; height:100px;">
         </div>
 
-        <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
+        <div class="title-bar">
+            <div class="icon" id="menuButton"><i class="ri-menu-line"></i></div>
+            <div class="text">{{ $title }}</div>
+        </div>
 
-                    @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
+        <div class="section">
+            <div class="line"></div>
+            <h3>ID Card</h3>
+        </div>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Details</h5>
-                            <style>
-                                .id-card {
-                                    width: 300px;
-                                    border: 1px solid #ccc;
-                                    text-align: center;
-                                    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-                                    position: relative;
-                                }
+        <div class="list">
+            <div class="card text-center">
+                <style>
+                    .id-card {
+                        width: 320px;
+                        border: 1px solid #ccc;
+                        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+                        border-radius: 10px;
+                        margin: 0 auto;
+                        overflow: hidden;
+                        background: #fff;
+                        position: relative;
+                    }
+                    .id-card .header {
+                        background: #40eafb;
+                        padding: 10px;
+                    }
+                    .id-card .header img {
+                        height: 40px;
+                    }
+                    .id-card .company-name {
+                        background: #eee;
+                        font-weight: bold;
+                        padding: 5px 0;
+                        font-size: 14px;
+                    }
+                    .id-card .photo {
+                        margin: 15px auto;
+                        width: 120px;
+                        height: 150px;
+                        border: 1px solid #aaa;
+                        overflow: hidden;
+                        border-radius: 6px;
+                    }
+                    .id-card .photo img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                    .id-card .info {
+                        text-align: left;
+                        padding: 0 20px;
+                        font-size: 14px;
+                    }
+                    .id-card .footer {
+                        background: #40eafb;
+                        padding: 8px;
+                        font-size: 12px;
+                    }
+                    .id-card .footer a {
+                        color: #000;
+                        text-decoration: underline;
+                    }
+                </style>
 
-                                .header-strip {
-                                    height: 30px;
-                                    background-color: #40eafb;
-                                }
-
-                                .clip-hole {
-                                    width: 50%;
-                                    height: 15px;
-                                    background: #fff;
-                                    border-radius: 10px;
-                                    position: absolute;
-                                    top: 20px;
-                                    left: 50%;
-                                    transform: translateX(-50%);
-                                    z-index: 2;
-                                }
-
-                                .photo-box {
-                                    margin: 30px auto 15px;
-                                    width: 120px;
-                                    height: 150px;
-                                    border: 1px solid #aaa;
-                                    padding: 5px;
-                                }
-
-                                .photo-box img {
-                                    width: 100%;
-                                    height: 100%;
-                                    object-fit: cover;
-                                }
-
-                                .info {
-                                    text-align: left;
-                                    padding: 0 20px;
-                                    font-size: 14px;
-                                }
-
-                                .address {
-                                    font-size: 12px;
-                                    padding: 10px 20px;
-                                    text-align: left;
-                                }
-
-                                .footer {
-                                    background-color: #40eafb;
-                                    color: #fff;
-                                    font-size: 12px;
-                                    padding: 10px;
-                                    margin-top: 10px;
-                                }
-
-                                .footer a {
-                                    color: #000;
-                                    text-decoration: underline;
-                                }
-
-                                .footer span {
-                                    color: #000;
-                                }
-                            </style>
-                            <div class="id-card">
-                                <div class="header-strip">
-                                    @if ($faviconDetails)
-                                        <img src="{{ asset('storage/webiste_setting/' . $faviconDetails->backend_logo) }}"
-                                            alt="" style="width: 50px;height: 25px;position: relative;right: 115px;">
-                                    @else
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="">
-                                    @endif
-                                </div>
-                                <div class="clip-hole">
-                                    {{ $footerDetails->company_name }}
-                                </div>
-
-                                <div class="photo-box">
-                                    <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile Photo">
-                                </div>
-
-                                <div class="info">
-                                    <p><strong>Name</strong> : {{ $details->name }}</p>
-                                    <p><strong>Email</strong> : {{ $details->email }}</p>
-                                    <p><strong>Joining Date</strong> : {{ $details->created_at }}</p>
-                                </div>
-
-                                <div class="address">
-                                    <p><strong>Address</strong> :</p>
-                                    <p>
-                                        {{ $details->address }}<br>
-                                        {{ $details->state }}, {{ $details->city }} - {{ $details->zipcode }}
-                                    </p>
-                                </div>
-
-                                <div class="footer">
-                                    <span>Website:</span> <a href="{{ env('APP_URL') }}">{{ env('APP_URL') }}</a>,
-                                    <span>Email:</span> <a
-                                        href="mailto:{{ $footerDetails->email }}">{{ $footerDetails->email }}</a>
-                                </div>
-                            </div>
-                        </div>
+                <div class="id-card">
+                    {{-- Header --}}
+                    <div class="header">
+                        <img src="{{ $faviconDetails ? asset('storage/webiste_setting/' . $faviconDetails->backend_logo) : asset('assets/img/logo.png') }}" alt="Logo">
+                    </div>
+                    <div class="company-name">
+                        {{ $footerDetails->company_name }}
                     </div>
 
+                    {{-- Photo --}}
+                    <div class="photo">
+                        <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile Photo">
+                    </div>
+
+                    {{-- Info --}}
+                    <div class="info">
+                        <p><strong>Name:</strong> {{ $details->name }}</p>
+                        <p><strong>Email:</strong> {{ $details->email }}</p>
+                        <p><strong>Address:</strong> {{ $details->address }}, {{ $details->city }}, {{ $details->state }} - {{ $details->zipcode }}</p>
+                        <p><strong>Joining Date:</strong> {{ $details->created_at }}</p>
+                    </div>
+
+                    {{-- Footer --}}
+                    <div class="footer">
+                        <p>
+                            Website: <a href="{{ env('APP_URL') }}">{{ env('APP_URL') }}</a><br>
+                            Email: <a href="mailto:{{ $footerDetails->email }}">{{ $footerDetails->email }}</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section>
-
-    </main><!-- End #main -->
+        </div>
+    </div>
 @endsection

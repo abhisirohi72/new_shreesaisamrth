@@ -3,83 +3,112 @@
 @section('title', $title)
 
 @section('content')
-    <main id="main" class="main">
-        <div class="pagetitle">
-            <h1>User Bank Details </h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item">Details</li>
-                    <li class="breadcrumb-item active">User Bank Details </li>
-                </ol>
-            </nav>
-        </div><!-- End Page Title -->
-        <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Add Information</h5>
-                            @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
-
-                            @if (session('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('error') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
-                            <!-- Vertical Form -->
-                            <form class="row g-3" method="POST" action="{{ route('save.bank.details') }}">
-                                @csrf
-                                <div class="col-12">
-                                    <label for="part_time" class="form-label">Bank Account Holder Name (As per bank records)</label>
-                                    <input type="text" class="form-control" id="holder_name" name="holder_name" value="{{ $details->holder_name ?? '' }}">
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="part_time" class="form-label">Bank Name</label>
-                                    <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ $details->bank_name ?? '' }}">
-                                </div>
-                                <div class="col-12">
-                                    <label for="part_time" class="form-label">Account Number
-                                    </label>
-                                    <input type="text" class="form-control" id="account_number" name="account_number" value="{{ $details->account_number ?? '' }}">
-                                </div>
-                                <div class="col-12">
-                                    <label for="part_time" class="form-label">IFSC Code
-                                    </label>
-                                    <input type="text" class="form-control" id="ifsc" name="ifsc" value="{{ $details->ifsc ?? '' }}">
-                                </div>
-                                <h4>UPI ID</h4>
-                                <hr>
-                                <div class="col-12">
-                                    <label for="part_time" class="form-label">Google Pe</label>
-                                    <input type="text" class="form-control" id="google_pe" name="google_pe" value="{{ $details->google_pe ?? '' }}">
-                                </div>
-                                <div class="col-12">
-                                    <label for="part_time" class="form-label">Phone Pe</label>
-                                    <input type="text" class="form-control" id="phonepe" name="phonepe" value="{{ $details->phonepe ?? '' }}">
-                                </div>
-                                <div class="col-12">
-                                    <label for="part_time" class="form-label">Paytm</label>
-                                    <input type="text" class="form-control" id="paytm" name="paytm" value="{{ $details->paytm ?? '' }}">
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="reset" class="btn btn-secondary">Reset</button>
-                                </div>
-                            </form><!-- Vertical Form -->
-                        </div>
-                    </div>
-                </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="wrap">
+        <div class="banner">
+            <div class="promo-tag">NEW</div>
+            <div class="txt">
+                <h1>Add Your Bank Details — get payments faster</h1>
+                <p>Provide correct details to ensure smooth transactions</p>
             </div>
-        </section>
-    </main>
+            <img src="" alt="Bank Icon" style="border-radius:12px;">
+        </div>
+
+        <div class="title-bar">
+            <div class="icon" id="menuButton"><i class="ri-menu-line"></i></div>
+            <div class="text">User Bank Details</div>
+        </div>
+
+        <div class="section">
+            <div class="line"></div>
+            <h3>Bank Account Information</h3>
+        </div>
+
+        <div class="list">
+            <div class="card">
+                @include("layouts.error_msg")
+
+                <form style="width: 100%;" method="POST" action="{{ route('save.bank.details') }}">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="holder_name">Bank Account Holder Name (As per bank records)</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="holder_name" 
+                            name="holder_name"
+                            value="{{ old('holder_name', $details->holder_name ?? '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bank_name">Bank Name</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="bank_name" 
+                            name="bank_name"
+                            value="{{ old('bank_name', $details->bank_name ?? '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="account_number">Account Number</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="account_number" 
+                            name="account_number"
+                            value="{{ old('account_number', $details->account_number ?? '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ifsc">IFSC Code</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="ifsc" 
+                            name="ifsc"
+                            value="{{ old('ifsc', $details->ifsc ?? '') }}">
+                    </div>
+
+                    <div class="section mt-4">
+                        <div class="line"></div>
+                        <h3>UPI Details</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="google_pe">Google Pay</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="google_pe" 
+                            name="google_pe"
+                            value="{{ old('google_pe', $details->google_pe ?? '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phonepe">PhonePe</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="phonepe" 
+                            name="phonepe"
+                            value="{{ old('phonepe', $details->phonepe ?? '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paytm">Paytm</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="paytm" 
+                            name="paytm"
+                            value="{{ old('paytm', $details->paytm ?? '') }}">
+                    </div>
+
+                    <button type="submit" class="form-btn">Submit Form</button>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

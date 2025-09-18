@@ -11,7 +11,7 @@
                 <h1>Invest in ChargingBD — get huge returns</h1>
                 <p>Download the app from the Play Store to get started</p>
             </div>
-            <img src="https://via.placeholder.com/80x80/222244/ffeb3b?text=App" alt="App Icon" style="border-radius:12px;">
+            <img src="" alt="App Icon" style="border-radius:12px;">
         </div>
         <div class="title-bar">
             <div class="icon" id="menuButton"><i class="ri-menu-line"></i></div>
@@ -117,35 +117,6 @@
             </div>
         </div>
     </div>
-    <div class="bottom-nav">
-        <div class="nav-inner">
-            <div class="nav" role="navigation" aria-label="bottom navigation">
-                <a href="#" class="item active">
-                    <i class="ri-home-5-fill icon"></i>
-                    <span>Home</span>
-                </a>
-                <a href="#" class="item">
-                    <i class="ri-bar-chart-fill icon"></i>
-                    <span>Invest</span>
-                </a>
-                <div style="width: 84px;"></div>
-                <a href="#" class="item">
-                    <i class="ri-user-star-fill icon"></i>
-                    <span>Agent</span>
-                </a>
-                <a href="#" class="item">
-                    <i class="ri-user-fill icon"></i>
-                    <span>My</span>
-                </a>
-            </div>
-            <div class="fab-wrap">
-                <div class="fab" title="Quick Menu">
-                    <i class="ri-add-line icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script></script>
     <div class="modal fade" id="basicModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -187,25 +158,14 @@
             var url = "https://wa.me/?text=" + encodeURIComponent(input);
             window.open(url, "_blank");
         }
-        const menuButton = document.getElementById('menuButton');
-        const sideMenu = document.getElementById('sideMenu');
-        const sideMenuClose = document.getElementById('sideMenuClose');
-        const overlay = document.getElementById('overlay');
-
-        function toggleMenu() {
-            sideMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-        menuButton.addEventListener('click', toggleMenu);
-        sideMenuClose.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-        const quickBoxes = document.querySelectorAll('.quick');
-        const hoverSound = new Audio('hover-sound.mp3');
-        quickBoxes.forEach(box => {
-            box.addEventListener('click', () => {
-                hoverSound.currentTime = 0;
-                hoverSound.play();
-            });
-        });
+        
+        // const quickBoxes = document.querySelectorAll('.quick');
+        // const hoverSound = new Audio('hover-sound.mp3');
+        // quickBoxes.forEach(box => {
+        //     box.addEventListener('click', () => {
+        //         hoverSound.currentTime = 0;
+        //         hoverSound.play();
+        //     });
+        // });
     </script>
 @endpush

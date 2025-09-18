@@ -3,128 +3,111 @@
 @section('title', $title)
 
 @section('content')
-    <main id="main" class="main">
-        <div class="pagetitle">
-            <h1>Marketing & Sales Skills</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item">Details</li>
-                    <li class="breadcrumb-item active">Marketing & Sales Skills</li>
-                </ol>
-            </nav>
-        </div><!-- End Page Title -->
-        <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Add Information</h5>
-                            @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
+    <div class="overlay" id="overlay"></div>
+    <div class="wrap">
+        <div class="banner">
+            <div class="promo-tag">NEW</div>
+            <div class="txt">
+                <h1>Invest in ChargingBD — get huge returns</h1>
+                <p>Download the app from the Play Store to get started</p>
+            </div>
+            <img src="" alt="App Icon" style="border-radius:12px;">
+        </div>
 
-                            @if (session('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('error') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
-                            <!-- Vertical Form -->
-                            <form class="row g-3" method="POST" action="{{ route('save.marketing.skill') }}">
-                                @csrf
-                                <h4>Social Media Presence </h4>
-                                <hr>
-                                <div class="col-12">
-                                    <label for="fb" class="form-label">Facebook</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="yes" @if(isset($details[0]) && $details[0]->fb=="yes")checked @endif name="fb">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="instagram" class="form-label">Instagram</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="yes" @if(isset($details[0]) && $details[0]->instagram=="yes")checked @endif name="instagram">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="linkedIn" class="form-label">LinkedIn</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="yes" @if(isset($details[0]) && $details[0]->linkedIn=="yes")checked @endif name="linkedIn">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="whatsapp" class="form-label">WhatsApp Groups</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="yes" @if(isset($details[0]) && $details[0]->whatsapp=="yes")checked @endif name="whatsapp">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h4>Marketing Experience</h4>
-                                <hr>
-                                <div class="col-12">
-                                    <label for="selling" class="form-label">Online/Offline Selling</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="yes" @if(isset($details[0]) && $details[0]->selling=="yes")checked @endif name="selling">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                                        </div>
-                                    </div>
-                                </div>
+        <div class="title-bar">
+            <div class="icon" id="menuButton"><i class="ri-menu-line"></i></div>
+            <div class="text">Search for investments</div>
+        </div>
 
-                                <div class="col-12">
-                                    <label for="lead_generation" class="form-label">Lead Generation</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="yes" @if(isset($details[0]) && $details[0]->lead_generation=="yes")checked @endif name="lead_generation">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                                        </div>
-                                    </div>
-                                </div>
+        <div class="section">
+            <div class="line"></div>
+            <h3>Marketing & Sales Skills</h3>
+        </div>
 
-                                <div class="col-12">
-                                    <label for="referal_business" class="form-label">Referral Business</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="yes" @if(isset($details[0]) && $details[0]->referal_business=="yes")checked @endif name="referal_business">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="public_speaking" class="form-label">Public Speaking Skills</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="yes" @if(isset($details[0]) && $details[0]->public_speaking=="yes")checked @endif name="public_speaking">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="reset" class="btn btn-secondary">Reset</button>
-                                </div>
-                            </form><!-- Vertical Form -->
+        <div class="list">
+            <div class="card">
+                @include("layouts.error_msg")
+
+                <form style="width: 100%;" method="POST" action="{{ route('save.marketing.skill') }}">
+                    @csrf
+
+                    <h4>Social Media Presence</h4>
+                    <div class="form-group">
+                        <label for="fb">Facebook</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="fb" value="yes"
+                                name="fb" @if(isset($details[0]) && $details[0]->fb=="yes") checked @endif>
+                            <label class="form-check-label" for="fb">Yes</label>
                         </div>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label for="instagram">Instagram</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="instagram" value="yes"
+                                name="instagram" @if(isset($details[0]) && $details[0]->instagram=="yes") checked @endif>
+                            <label class="form-check-label" for="instagram">Yes</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="linkedIn">LinkedIn</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="linkedIn" value="yes"
+                                name="linkedIn" @if(isset($details[0]) && $details[0]->linkedIn=="yes") checked @endif>
+                            <label class="form-check-label" for="linkedIn">Yes</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp Groups</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="whatsapp" value="yes"
+                                name="whatsapp" @if(isset($details[0]) && $details[0]->whatsapp=="yes") checked @endif>
+                            <label class="form-check-label" for="whatsapp">Yes</label>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #ede617;">Marketing Experience</h4>
+                    <div class="form-group">
+                        <label for="selling">Online/Offline Selling</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="selling" value="yes"
+                                name="selling" @if(isset($details[0]) && $details[0]->selling=="yes") checked @endif>
+                            <label class="form-check-label" for="selling">Yes</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lead_generation">Lead Generation</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="lead_generation" value="yes"
+                                name="lead_generation" @if(isset($details[0]) && $details[0]->lead_generation=="yes") checked @endif>
+                            <label class="form-check-label" for="lead_generation">Yes</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="referal_business">Referral Business</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="referal_business" value="yes"
+                                name="referal_business" @if(isset($details[0]) && $details[0]->referal_business=="yes") checked @endif>
+                            <label class="form-check-label" for="referal_business">Yes</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="public_speaking">Public Speaking Skills</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="public_speaking" value="yes"
+                                name="public_speaking" @if(isset($details[0]) && $details[0]->public_speaking=="yes") checked @endif>
+                            <label class="form-check-label" for="public_speaking">Yes</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" name="submit" class="form-btn">Submit Form</button>
+                </form>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
 @endsection

@@ -24,9 +24,11 @@ class ProfessionalDetailController extends Controller
         // echo "<pre>";
         // print_r($details);
         // exit;
+        $page_name="p_d_add";
         return view("professional_details.add", [
             "title"     =>  $title,
-            "details"   =>  $details
+            "details"   =>  $details,
+            'page_name' =>  $page_name
         ]);
     }
 

@@ -7,22 +7,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Login - ChargingBD</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-    @if($page_name=="login")
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @if((isset($page_name)) && $page_name=="login")
         <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
-    @endif    
-    @if($page_name=="forgot_user")
+    @elseif((isset($page_name)) && $page_name=="forgot_user")
         <link rel="stylesheet" href="{{ asset('assets/css/forgot_pass.css') }}">
-    @endif
-    @if($page_name=="register_user")
+    @elseif((isset($page_name)) && $page_name=="register_user")
         <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
-    @endif
-    @if($page_name=="u_dashboard")
+    @else
         <link rel="stylesheet" href="{{ asset('assets/css/u_dashboard.css') }}">
     @endif
 </head>
 
 <body>
-    @if(session()->has('user')) 
+    @if(session()->has('user'))
         @include("layouts.user.header")
         @include("layouts.user.sidebar")
     @elseif(session()->has('admin')) 
@@ -33,8 +31,8 @@
         @include("layouts.developer.sidebar")    
     @endif
     @yield('content') <!-- Main Content -->
-    @stack('script-push')
     @include('layouts.footer')
+    @stack('script-push')
 </body>
 
 </html>

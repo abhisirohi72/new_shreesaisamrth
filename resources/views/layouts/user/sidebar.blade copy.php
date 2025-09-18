@@ -267,10 +267,10 @@
         @endif
 
         <li class="nav-item">
-            <a class="nav-link @if((request()->segment(2)!='my_level_list') && (request()->segment(2)!="user_level_list")) collapsed @endif" data-bs-target="#components-team" data-bs-toggle="collapse" href="#">
+            <a class="nav-link @if((request()->segment(2)!='my_level_list') && (request()->segment(2)!='user_level_list')) collapsed @endif" data-bs-target="#components-team" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-microsoft-teams"></i><span>Team Details</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="components-team" class="nav-content collapse @if((request()->segment(2)=='my_level_list') || (request()->segment(2)=="user_level_list")) show @endif" data-bs-parent="#sidebar-nav">
+            <ul id="components-team" class="nav-content collapse @if((request()->segment(2)=='my_level_list') || (request()->segment(2)=='user_level_list')) show @endif" data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('user.level.list.show') }}" @if((request()->segment(2)=="my_level_list") || (request()->segment(2)=="user_level_list")) class='active' @endif>
                         <i class="bi bi-circle"></i><span>My Level List</span>

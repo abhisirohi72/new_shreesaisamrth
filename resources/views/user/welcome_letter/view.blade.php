@@ -3,150 +3,64 @@
 @section('title', $title)
 
 @section('content')
-    <style>
-        .datatable-container {
-            overflow: auto;
-        }
-    </style>
-    <main id="main" class="main">
-
-        <div class="pagetitle">
-            <h1>{{ $title }}</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item">Official</li>
-                    <li class="breadcrumb-item active">{{ $title }}</li>
-                </ol>
-            </nav>
+    <div class="overlay" id="overlay"></div>
+    <div class="wrap">
+        <div class="banner">
+            <div class="promo-tag">NEW</div>
+            <div class="txt">
+                <h1>{{ $title }}</h1>
+                <p>Official details and user information</p>
+            </div>
+            <img src="{{ $faviconDetails ? asset('storage/webiste_setting/' . $faviconDetails->backend_logo) : asset('assets/img/logo.png') }}" 
+                 alt="App Logo" style="border-radius:12px; width:100px; height:100px;">
         </div>
 
-        <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
+        <div class="title-bar">
+            <div class="icon" id="menuButton"><i class="ri-menu-line"></i></div>
+            <div class="text">{{ $title }}</div>
+        </div>
 
-                    @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
+        <div class="section">
+            <div class="line"></div>
+            <h3>Company & User Details</h3>
+        </div>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Details</h5>
-                            <style>
-                                body {
-                                    margin: 0;
-                                    font-family: Arial, sans-serif;
-                                    background-color: #40eafb;
-                                    color: #222;
-                                }
+        <div class="list">
+            <div class="card">
+                @include("layouts.error_msg")
 
-                                .container {
-                                    padding: 20px 40px;
-                                }
+                <div class="p-3">
+                    <h4 class="mb-3">{{ $footerDetails->company_name }}</h4>
+                    <p><strong>Address:</strong> {{ $footerDetails->aaddress }}</p>
+                    <p><strong>Url:</strong> <a href="{{ env('APP_URL') }}">{{ env('APP_URL') }}</a></p>
+                    <p><strong>Email:</strong> {{ $footerDetails->email }}</p>
+                    <p><strong>Phone:</strong> {{ $footerDetails->phone }}</p>
 
-                                h1 {
-                                    text-align: center;
-                                    margin-bottom: 10px;
-                                }
+                    <hr>
 
-                                hr {
-                                    border: none;
-                                    height: 1px;
-                                    background-color: #fff;
-                                    margin-bottom: 20px;
-                                }
+                    <p>
+                        Welcome to <b>{{ $footerDetails->company_name }}</b>! We're excited to have you onboard. 
+                        Your journey begins here, and we're confident you'll achieve great things with us. 🌱
+                    </p>
 
-                                .top-section {
-                                    display: flex;
-                                    justify-content: space-between;
-                                    align-items: flex-start;
-                                    flex-wrap: wrap;
-                                }
-
-                                .contact-info {
-                                    max-width: 70%;
-                                }
-
-                                .contact-info p,
-                                .user-info p,
-                                .message,
-                                .footer {
-                                    margin: 8px 0;
-                                }
-
-                                .logo img {
-                                    width: 100px;
-                                    height: 100px;
-                                }
-
-                                a {
-                                    color: #0645AD;
-                                    text-decoration: none;
-                                }
-
-                                a:hover {
-                                    text-decoration: underline;
-                                }
-
-                                .message,
-                                .footer {
-                                    margin-top: 30px;
-                                }
-                            </style>
-                            <div class="container">
-                                <h1>{{ $footerDetails->company_name }}</h1>
-                                <hr>
-                                <div class="top-section">
-                                    <div class="contact-info">
-                                        <p><strong>Address</strong> : {{ $footerDetails->aaddress }}</p>
-                                        <p><strong>Url</strong> : <a href="{{ env('APP_URL') }}">{{ env('APP_URL') }}</a>
-                                        </p>
-                                        <p><strong>Email</strong> : {{ $footerDetails->email }}</p>
-                                        <p><strong>Phone</strong> : {{ $footerDetails->phone }}</p>
-                                    </div>
-                                    <div class="logo">
-                                        @if ($faviconDetails)
-                                            <img src="{{ asset('storage/webiste_setting/' . $faviconDetails->backend_logo) }}"
-                                                alt="" style="width: 100px; height: 100px;">
-                                        @else
-                                            <img src="{{ asset('assets/img/logo.png') }}" alt="">
-                                        @endif
-                                    </div>
-                                </div>
-                                <p class="message">
-                                    Welcome to {{ $footerDetails->company_name }}! We're excited to have you onboard. Your journey begins here, and we're confident you'll achieve great things with us. Let's grow together! 🌱
-                                </p>
-                                <div class="user-info">
-                                    <p><strong>Name</strong> : {{ $details->name }}</p>
-                                    <p><strong>Email</strong> : {{ $details->email }}</p>
-                                    <p><strong>Address</strong> : {{ $details->address }}</p>
-                                    <p><strong>State</strong> : {{ $details->state }}</p>
-                                    <p><strong>City</strong> : {{ $details->city }}</p>
-                                    <p><strong>DOJ</strong> : {{ $details->created_at }}</p>
-                                </div>
-
-                                
-                                <p class="footer">
-                                    For further details login on <a
-                                        href="{{ env('APP_URL') }}">{{ $footerDetails->company_name }}</a> with your
-                                    userid and password.
-                                </p>
-                            </div>
-                        </div>
+                    <div class="mt-3">
+                        <p><strong>Name:</strong> {{ $details->name }}</p>
+                        <p><strong>Email:</strong> {{ $details->email }}</p>
+                        <p><strong>Address:</strong> {{ $details->address }}</p>
+                        <p><strong>State:</strong> {{ $details->state }}</p>
+                        <p><strong>City:</strong> {{ $details->city }}</p>
+                        <p><strong>DOJ:</strong> {{ $details->created_at }}</p>
                     </div>
 
+                    <hr>
+
+                    <p>
+                        For further details login on 
+                        <a href="{{ env('APP_URL') }}">{{ $footerDetails->company_name }}</a> 
+                        with your userid and password.
+                    </p>
                 </div>
             </div>
-        </section>
-
-    </main><!-- End #main -->
+        </div>
+    </div>
 @endsection
