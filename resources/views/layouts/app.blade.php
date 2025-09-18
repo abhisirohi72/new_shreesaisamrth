@@ -30,7 +30,7 @@
         @if (env('APP_URL') == 'http://localhost/new_project')
             <link rel="stylesheet" href="{{ asset('assets/css/u_dashboard.css') }}">
         @else
-            <link rel="stylesheet" href="{{ asset('public/assets/css/u_dashboard.css') }}">
+            <link rel="stylesheet" href="{{ asset('public/assets/css/u_dashboard.css?v=1') }}">
         @endif
     @endif
 </head>
