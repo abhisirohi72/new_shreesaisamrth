@@ -58,7 +58,7 @@ class DashboardController extends Controller
         // var_dump($total_team);
         // exit;
 
-
+        $page_name= "u_dashboard";
         return view("user.dashboard", [
             "title"             =>  $title,
             "encrypt"           =>  Auth::user()->unique_id,
@@ -72,7 +72,8 @@ class DashboardController extends Controller
             "total_team"        =>  count($total_team),
             "inactive_ids"      =>  $inactive_ids,
             "total_business"    =>  $total_business,
-            "total_team_income" =>  $total_team_income
+            "total_team_income" =>  $total_team_income,
+            'page_name'         =>  $page_name
         ]);
     }
 

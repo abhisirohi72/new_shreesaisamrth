@@ -10,8 +10,10 @@ class ForgotPasswordController extends Controller
     public function showLinkRequestForm()
     {
         $title = "Forgot Password";
+        $page_name= "forgot_user";
         return view('auth.forgot-password', [
-            "title" => $title
+            "title" => $title,
+            'page_name' =>  $page_name
         ]);
     }
 

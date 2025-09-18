@@ -23,8 +23,10 @@ class LoginController extends Controller
     public function index(Request $request): View
     {
         $title = "Login Page";
+        $page_name= "login";
         return view("auth.user.login", [
-            "title" => $title
+            "title" => $title,
+            'page_name' =>  $page_name
         ]);
     }
 
@@ -66,10 +68,12 @@ class LoginController extends Controller
         // }
         //get user details
         $sponsor_email = User::where("unique_id", $reference)->pluck("email");
+        $page_name = "register_user";
         return view("auth.user.register", [
             "title"         =>  $title,
             "reference"     =>  $reference,
-            "sponsor_email" =>  $sponsor_email
+            "sponsor_email" =>  $sponsor_email,
+            'page_name'     =>  $page_name,
         ]);
     }
 

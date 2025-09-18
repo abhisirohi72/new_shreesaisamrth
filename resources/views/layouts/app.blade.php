@@ -2,21 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title')</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://www.youtube.com;">
+    <title>Login - ChargingBD</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    @if($page_name=="login")
+        <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+    @endif    
+    @if($page_name=="forgot_user")
+        <link rel="stylesheet" href="{{ asset('assets/css/forgot_pass.css') }}">
+    @endif
+    @if($page_name=="register_user")
+        <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
+    @endif
+    @if($page_name=="u_dashboard")
+        <link rel="stylesheet" href="{{ asset('assets/css/u_dashboard.css') }}">
+    @endif
+</head>
 
-
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    @include('layouts.header') <!-- Include Header -->
-
+<body>
     @if(session()->has('user')) 
         @include("layouts.user.header")
         @include("layouts.user.sidebar")
@@ -27,12 +32,9 @@
         @include("layouts.developer.header")
         @include("layouts.developer.sidebar")    
     @endif
-</head>
-
-<body>
     @yield('content') <!-- Main Content -->
     @stack('script-push')
-    @include('layouts.footer') <!-- Include Footer -->
+    @include('layouts.footer')
 </body>
 
 </html>
