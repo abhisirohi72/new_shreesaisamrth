@@ -154,7 +154,7 @@ body {
 
 .submenu.open {
     display: block;
-    max-height: 200px;
+    max-height: 500px;
 }
 
 .overlay {
